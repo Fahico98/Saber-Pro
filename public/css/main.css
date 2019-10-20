@@ -1,0 +1,13 @@
+.dash-toolbar {
+  min-height: 50px;
+}
+.dash-content {
+
+    padding: 0PX 15PX 15PX 15PX;
+}
+.searchbox-submit {
+    border: none;
+    background: #DDE0E3;
+    padding: 0px;
+    height: 50px;
+}
