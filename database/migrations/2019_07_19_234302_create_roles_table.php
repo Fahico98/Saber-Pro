@@ -11,10 +11,9 @@ class CreateRolesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up(){
         Schema::create('roles', function (Blueprint $table) {
-            $table->Increments('id')->unsigned();;
+            $table->Increments('id')->unsigned();
             $table->string('name');
             $table->timestamps();
         });
@@ -25,8 +24,7 @@ class CreateRolesTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down(){
         Schema::dropIfExists('roles');
     }
 }

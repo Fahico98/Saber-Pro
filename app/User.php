@@ -9,11 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+class User extends Authenticatable{
 
-class User extends Authenticatable
-{
-
-  protected $table ="users";
+    protected $table ="users";
 
     use Notifiable;
 
@@ -44,22 +42,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-      public function role()
-    {
-        return $this->belongsTo('ProyectIcfes\Role');
-    }
-
-
-      public function esAdmin()
-
-      {
-        if($this->role->name== 'admin'){
-
-        return true;
-
-      }
-
-        return false;
-
+    /**
+     * Retorna "true" si el usuario es administrador y "false" en caso contrario.
+     *
+     * @return boolean
+     */
+    public function esAdmin(){
+        return($this->role->name === 'administrador');
     }
 }
