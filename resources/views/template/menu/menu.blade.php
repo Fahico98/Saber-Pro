@@ -1,5 +1,4 @@
 
-
         <div class="dash-nav dash-nav-dark">
             <header>
                 <a href="#!" class="menu-toggle">
@@ -14,10 +13,10 @@
                     <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
                         <i class="fas fa-chart-bar"></i> Modulo Mipana </a>
                     <div class="dash-nav-dropdown-menu">
-                        <a href="{{asset('/unipana/programa/')}}" class="dash-nav-dropdown-item">Programas</a>
+                        <a href="{{asset('/unipana/facultad/')}}" class="dash-nav-dropdown-item">Facultades</a>
                     </div>
                     <div class="dash-nav-dropdown-menu">
-                        <a href="{{asset('/unipana/facultad/')}}" class="dash-nav-dropdown-item">Facultades</a>
+                        <a href="{{asset('/unipana/programa/')}}" class="dash-nav-dropdown-item">Programas</a>
                     </div>
                     <div class="dash-nav-dropdown-menu">
                         <a href="{{asset('/unipana/asignatura/')}}" class="dash-nav-dropdown-item">Asignaturas</a>

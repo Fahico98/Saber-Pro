@@ -16,16 +16,16 @@ class UsersTableSeeder extends Seeder{
 
         // Crea el usuario "Admin Dummy" en la tabla "users" con rol "administrador".
         DB::table("users")->insert([
-            "name" => "Admin Dummy",
-            "email" => "admin@dummy.com",
+            "name" => "Admin Tester",
+            "email" => "admin@tester.com",
             "password" => Hash::make("saberpro"),
             "role_id" => 1
         ]);
 
         // Crea el usuario "User Dummy" en la tabla "users" con rol "doc-est-inv".
         DB::table("users")->insert([
-            "name" => "User Dummy",
-            "email" => "user@dummy.com",
+            "name" => "User Tester",
+            "email" => "user@tester.com",
             "password" => Hash::make("saberpro"),
             "role_id" => 2
         ]);

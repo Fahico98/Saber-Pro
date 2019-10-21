@@ -11,7 +11,7 @@ class criterio extends Model{
     protected $fillable = ['name', 'result_id'];
 
     public function resultados(){
-        return $this->belongsTo('ProyectIcfes\resultado','result_id');
+        return $this->belongsTo('ProyectIcfes\resultado', 'result_id');
     }
 
     public function relaciones(){

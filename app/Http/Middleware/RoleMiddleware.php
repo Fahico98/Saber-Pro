@@ -4,8 +4,8 @@ namespace ProyectIcfes\Http\Middleware;
 
 use Closure;
 
-class RoleMiddleware
-{
+class RoleMiddleware{
+
     /**
      * Handle an incoming request.
      *
@@ -13,10 +13,8 @@ class RoleMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
+    public function handle($request, Closure $next){
         //return $next($request);
-
         return redirect('/usuarios/registro');
     }
 }

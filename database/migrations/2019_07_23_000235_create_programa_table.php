@@ -4,24 +4,19 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProgramaTable extends Migration
-{
+class CreateProgramaTable extends Migration{
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up(){
         Schema::create('programa', function (Blueprint $table) {
             $table->Increments('id');
             $table->string('name');
             $table->integer('facultad_id')->unsigned();
-
-
-
             $table->foreign('facultad_id')->references('id')->on('facultad');
-
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,8 +27,10 @@ class CreateProgramaTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down(){
+        Schema::table('programa', function (Blueprint $table){
+            $table->dropForeign(['facultad_id']);
+        });
         Schema::dropIfExists('programa');
     }
 }

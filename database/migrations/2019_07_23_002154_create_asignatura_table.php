@@ -20,11 +20,7 @@ class CreateAsignaturaTable extends Migration
             $table->string('no_creditos');
             $table->string('docente_encargado');
             $table->integer('programa_id')->unsigned();
-
-
-
             $table->foreign('programa_id')->references('id')->on('programa');
-
             $table->timestamps();
             $table->softDeletes();
         });
@@ -35,8 +31,10 @@ class CreateAsignaturaTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down(){
+        Schema::table('asignatura', function (Blueprint $table){
+            $table->dropForeign(['programa_id']);
+        });
         Schema::dropIfExists('asignatura');
     }
 }

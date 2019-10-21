@@ -17,11 +17,7 @@ class CreateResultadoAprendizajeTable extends Migration
             $table->Increments('id');
             $table->string('name');
             $table->integer('asignatura_id')->unsigned();
-
-
-
             $table->foreign('asignatura_id')->references('id')->on('asignatura');
-
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,8 +28,10 @@ class CreateResultadoAprendizajeTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down(){
+        Schema::table('resultado_aprendizaje', function (Blueprint $table){
+            $table->dropForeign(['asignatura_id']);
+        });
         Schema::dropIfExists('resultado_aprendizaje');
     }
 }

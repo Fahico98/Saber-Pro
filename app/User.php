@@ -48,6 +48,6 @@ class User extends Authenticatable{
      * @return boolean
      */
     public function esAdmin(){
-        return($this->role->name === 'administrador');
+        return ($this->role->name === 'administrador');
     }
 }

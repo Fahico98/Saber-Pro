@@ -10,26 +10,47 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+
+//Auth::routes(); ----------------------------------------------------------------------------------------------
+
+// Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+// Email Verification Routes...
+Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+
+// ----------------------------------------------------------------------------------------------------------------
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/', function(){
+    return view('layouts.home.home');
+})->middleware('auth');
 
-Route::get('/', function () {
-
-  return view('layouts.home.home');
-
-});
 Route::get('/facultades', function () {
-  return view('layouts.unipana1.facultades.create');
+    return view('layouts.unipana1.facultades.create');
 });
 
 Route::get('/programas', function () {
-  return view('template.Layouts.unipana.programas.create');
+    return view('template.Layouts.unipana.programas.create');
 });
 
 Route::get('/modulos', function () {
-  return view('template.Layouts.icfes.modulos.create');
+    return view('template.Layouts.icfes.modulos.create');
 });
 
 //Route::get('/unipana', 'asignaturaController@index');
@@ -38,7 +59,6 @@ Route::get('/modulos', function () {
 
 //Route::resource('Unipana', 'asignaturaController');
 //Route::get('/admin/user/EsAdmin', ['middleware'=>'EsAdmin', function(){
-
 
 Route::get('/unipana/facultad', 'unipanaController@index_facultad');
 Route::post('/unipana/facultad', 'unipanaController@store_facultad');
@@ -83,29 +103,29 @@ Route::get('/relacion/{id}/editar','RelacionController@edit_asignatura');
 
 Route::resource('relacion', 'RelacionController');
 
-Route::group(['middleware' => 'EsAdmin'], function () {
+//Route::group(['middleware' => 'EsAdmin'], function () {
 
-    Route::get('/icfes/modulo', 'IcfesController@index_modulo');
-    Route::post('/icfes/modulo', 'IcfesController@store_modulo');
-    Route::get('/icfes/modulo/create', 'IcfesController@create_modulo');
-    Route::get('/icfes/modulo/{id}/editar','IcfesController@edit_modulo');
-    Route::post('/icfes/modulo/{id}','IcfesController@update_modulo');
-    Route::get('/icfes/modulo/{id}/destroy','IcfesController@destroy_modulo');
+Route::get('/icfes/modulo', 'IcfesController@index_modulo');
+Route::post('/icfes/modulo', 'IcfesController@store_modulo');
+Route::get('/icfes/modulo/create', 'IcfesController@create_modulo');
+Route::get('/icfes/modulo/{id}/editar','IcfesController@edit_modulo');
+Route::post('/icfes/modulo/{id}','IcfesController@update_modulo');
+Route::get('/icfes/modulo/{id}/destroy','IcfesController@destroy_modulo');
 
-    Route::get('/icfes/afirmacion', 'IcfesController@index_afirmacion');
-    Route::post('/icfes/afirmacion', 'IcfesController@store_afirmacion');
-    Route::get('/icfes/afirmacion/create', 'IcfesController@create_afirmacion');
-    Route::get('/icfes/afirmacion/{id}/editar','IcfesController@edit_afirmacion');
-    Route::post('/icfes/afirmacion/{id}','IcfesController@update_afirmacion');
-    Route::get('/icfes/afirmacion/{id}/destroy','IcfesController@destroy_afirmacion');
+Route::get('/icfes/afirmacion', 'IcfesController@index_afirmacion');
+Route::post('/icfes/afirmacion', 'IcfesController@store_afirmacion');
+Route::get('/icfes/afirmacion/create', 'IcfesController@create_afirmacion');
+Route::get('/icfes/afirmacion/{id}/editar','IcfesController@edit_afirmacion');
+Route::post('/icfes/afirmacion/{id}','IcfesController@update_afirmacion');
+Route::get('/icfes/afirmacion/{id}/destroy','IcfesController@destroy_afirmacion');
 
-    Route::get('/icfes/evidencia', 'IcfesController@index_evidencia');
-    Route::post('/icfes/evidencia', 'IcfesController@store_evidencia');
-    Route::get('/icfes/evidencia/create', 'IcfesController@create_evidencia');
-    Route::get('/icfes/evidencia/{id}/editar','IcfesController@edit_evidencia');
-    Route::post('/icfes/evidencia/{id}','IcfesController@update_evidencia');
-    Route::get('/icfes/evidencia/{id}/destroy','IcfesController@destroy_evidencia');
+Route::get('/icfes/evidencia', 'IcfesController@index_evidencia');
+Route::post('/icfes/evidencia', 'IcfesController@store_evidencia');
+Route::get('/icfes/evidencia/create', 'IcfesController@create_evidencia');
+Route::get('/icfes/evidencia/{id}/editar','IcfesController@edit_evidencia');
+Route::post('/icfes/evidencia/{id}','IcfesController@update_evidencia');
+Route::get('/icfes/evidencia/{id}/destroy','IcfesController@destroy_evidencia');
 
-    Route::resource('icfes', 'IcfesController');
+Route::resource('icfes', 'IcfesController');
 
-});
+//});
