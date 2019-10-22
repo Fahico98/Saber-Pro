@@ -65,7 +65,7 @@ Route::post('/unipana/facultad', 'unipanaController@store_facultad');
 Route::get('/unipana/facultad/create', 'unipanaController@create_facultad');
 Route::get('/unipana/facultad/{id}/editar','unipanaController@edit_facultad');
 Route::post('/unipana/facultad/{id}','unipanaController@update_facultad');
-Route::get('/unipana/facultad/{id}/destroy','unipanaController@destroy');
+Route::get('/unipana/facultad/{id}/destroy','unipanaController@destroy_facultad');
 
 Route::get('/unipana/programa', 'unipanaController@index_programa');
 Route::post('/unipana/programa', 'unipanaController@store_programa');

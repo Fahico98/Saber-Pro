@@ -37,6 +37,7 @@ class RelacionController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function edit_asignatura($id){
+
         $asignaturas =
             DB::table('asignatura')
                 ->where('asignatura.id',$id)
@@ -48,6 +49,7 @@ class RelacionController extends Controller{
                     'resultado_aprendizaje.name as resultado',
                     'criterio_evaluacion.name as criterio'
                 )->get();
+
         return view('layouts.relacion.create', compact('asignaturas'));
     }
 }

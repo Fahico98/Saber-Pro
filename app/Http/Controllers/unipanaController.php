@@ -26,7 +26,22 @@ class unipanaController extends Controller{
      * @return void
      */
     public function __construct(){
-        $this->middleware('auth');
+
+        $this->middleware('auth')->except([
+            "destroy_facultad",
+            "destroy_programa",
+            "destroy_asignatura",
+            "destroy_resultado",
+            "destroy_criterio"
+        ]);
+
+        $this->middleware("EsAdmin")->only([
+            "destroy_facultad",
+            "destroy_programa",
+            "destroy_asignatura",
+            "destroy_resultado",
+            "destroy_criterio"
+        ]);
     }
 
     public function index_facultad(){
@@ -278,7 +293,7 @@ class unipanaController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
+    public function destroy_facultad($id){
         $facultad = Facultad::find($id);
         $facultad->delete();
         return redirect('/unipana/facultad');

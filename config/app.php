@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -174,6 +174,9 @@ return [
         // ProyectIcfes\Providers\BroadcastServiceProvider::class,
         ProyectIcfes\Providers\EventServiceProvider::class,
         ProyectIcfes\Providers\RouteServiceProvider::class,
+
+        // Own...
+        ProyectIcfes\Providers\BladeCustomDirectivesServiceProvider::class
 
     ],
 

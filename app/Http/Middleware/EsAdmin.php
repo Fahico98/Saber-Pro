@@ -16,16 +16,10 @@ class EsAdmin{
      */
     public function handle($request, Closure $next){
         //return $next($request);
-
         if(Auth::check()){
             $user = Auth::user();
-            if($user->esAdmin()){
-                return $next($request);
-            else{
-                redirect('home');
-            }
-        }else{
-            return redirect('login');
+            return ($user->esAdmin()) ? $next($request) : redirect('home');
         }
+        return redirect('login');
     }
 }

@@ -2,7 +2,6 @@
 
 namespace ProyectIcfes;
 
-use ProyectIcfes\User;
 use ProyectIcfes\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable{
 
-    protected $table ="users";
+    protected $table = "users";
 
     use Notifiable;
 
@@ -49,5 +48,12 @@ class User extends Authenticatable{
      */
     public function esAdmin(){
         return ($this->role->name === 'administrador');
+    }
+
+    /**
+     * Get the user that owns the role.
+     */
+    public function role(){
+        return $this->belongsTo(Role::class);
     }
 }
