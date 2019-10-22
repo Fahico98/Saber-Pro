@@ -16,6 +16,8 @@ class CreateCompetenciaTable extends Migration
         Schema::create('competencia', function (Blueprint $table) {
             $table->Increments('id');
             $table->string('name');
+            $table->integer('asignatura_id')->unsigned();
+            $table->foreign('asignatura_id')->references('id')->on('asignatura');
             $table->timestamps();
             $table->softDeletes();
         });

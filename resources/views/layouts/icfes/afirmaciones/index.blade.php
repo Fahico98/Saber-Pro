@@ -62,8 +62,11 @@
                                                 <td>
                                                 <a href="#!" class="btn btn-primary btn-lg mb-1"> <i class="fas fa-list-alt"></i> </a>
                                                 <a href="{{asset('/icfes/afirmacion/'.$afirmacion->id.'/editar')}}" class="btn btn-secondary btn-lg mb-1"> <i class="fas fa-edit"></i> </a>
-                                                <a href="{{asset('/icfes/afirmacion/'.$afirmacion->id.'/destroy')}}" onclick="
-return confirm('Seguro que desea eliminar el registro?')" class="btn btn-danger btn-lg mb-1"> <i class="fas fa-times-circle"></i> </a>
+                                                @isadmin
+                                                    <a href="{{asset('/icfes/afirmacion/'.$afirmacion->id.'/destroy')}}"
+                                                        onclick="return confirm('Seguro que desea eliminar el registro?')"
+                                                        class="btn btn-danger btn-lg mb-1"><i class="fas fa-times-circle"></i></a>
+                                                @endisadmin
                                                 </td>
                                             </tr>
 
