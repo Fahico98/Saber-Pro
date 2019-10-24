@@ -54,7 +54,7 @@
                                     <td>{{ $asignatura->semestre }}</td>
                                     <td>{{ $asignatura->no_creditos }}</td>
                                     <td>{{ $asignatura->docente_encargado }}</td>
-                                    <td>{{ $asignatura->programas->name }}</td>
+                                    <td>{{ $asignatura->programa->name }}</td>
                                     <td>
                                         <a href="{{asset('/relacion/'.$asignatura->id.'/editar')}}"
                                             class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>

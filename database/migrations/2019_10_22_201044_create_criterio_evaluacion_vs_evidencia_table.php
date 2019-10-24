@@ -4,19 +4,19 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacultadTable extends Migration
-{
+class CreateCriterioEvaluacionVsEvidenciaTable extends Migration{
+
     /**
      * Run the migrations.
      *
      * @return void
      */
     public function up(){
-        Schema::create('facultad', function(Blueprint $table){
+        Schema::create('criterio_evaluacion_vs_evidencia', function(Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->bigInteger("criterio_evaluacion_id")->unsigned();
+            $table->bigInteger("evidencia_id")->unsigned();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -26,6 +26,6 @@ class CreateFacultadTable extends Migration
      * @return void
      */
     public function down(){
-        Schema::dropIfExists('facultad');
+        Schema::dropIfExists('criterio_evaluacion_vs_evidencia');
     }
 }

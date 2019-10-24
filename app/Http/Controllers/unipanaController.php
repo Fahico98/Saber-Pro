@@ -2,21 +2,20 @@
 
 namespace ProyectIcfes\Http\Controllers;
 
-use Illuminate\Http\Request;
-use ProyectIcfes\facultad;
-use ProyectIcfes\programa;
-use ProyectIcfes\asignatura;
-use ProyectIcfes\resultado;
-use ProyectIcfes\criterio;
-use Session;
-use Redirect;
-use ProyectIcfes\Http\Requests;
 use ProyectIcfes\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use DB;
-use Input;
+use Illuminate\Http\Request;
+use ProyectIcfes\asignatura;
+use ProyectIcfes\resultado;
+use ProyectIcfes\criterio;
+use ProyectIcfes\facultad;
+use ProyectIcfes\programa;
+use Session;
+use Redirect;
 use Storage;
+use Input;
+use DB;
 
 class unipanaController extends Controller{
 
@@ -52,24 +51,24 @@ class unipanaController extends Controller{
     }
 
     public function index_programa(){
-        $programas = Programa::with('facultades')->get();
+        $programas = Programa::with('facultad')->get();
         //return $programas;
         return view('layouts.unipana.programas.index', compact('programas'));
     }
 
     public function index_asignatura(){
-        $asignaturas = Asignatura::with('programas')->get();
+        $asignaturas = Asignatura::with('programa')->get();
         //return $asignaturas;
         return view('layouts.unipana.asignaturas.index', compact('asignaturas'));
     }
 
     public function index_resultado(){
-        $resultados = Resultado::with('asignaturas')->get();
+        $resultados = Resultado::with('asignatura')->get();
         return view('layouts.unipana.resultados.index', compact('resultados'));
     }
 
     public function index_criterio(){
-        $criterios = Criterio::with('resultados')->get();
+        $criterios = Criterio::with('resultado_aprendizaje')->get();
         return view('layouts.unipana.criterios.index', compact('criterios'));
     }
 
@@ -150,7 +149,7 @@ class unipanaController extends Controller{
     public function store_criterio(Request $request){
         $criterio = new Criterio;
         $criterio->name = $request->name;
-        $criterio->result_id = $request->result_id;
+        $criterio->resultado_aprendizaje_id = $request->result_id;
         $criterio->save();
         return Redirect('/unipana/criterio')->with('message','Guardado Satisfactoriamente !');
     }

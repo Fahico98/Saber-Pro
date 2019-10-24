@@ -12,14 +12,14 @@ class CreateAsignaturaTable extends Migration{
      * @return void
      */
     public function up(){
-        Schema::create('asignatura', function (Blueprint $table) {
-            $table->Increments('id');
+        Schema::create('asignatura', function(Blueprint $table){
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('semestre');
             $table->string('no_creditos');
             $table->string('docente_encargado');
-            $table->integer('programa_id')->unsigned();
-            $table->foreign('programa_id')->references('id')->on('programa');
+            $table->bigInteger('programa_id')->unsigned();
+            //$table->foreign('programa_id')->references('id')->on('programa');
             $table->timestamps();
             $table->softDeletes();
         });

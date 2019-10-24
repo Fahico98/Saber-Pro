@@ -12,11 +12,11 @@ class CreateAfirmacionTable extends Migration{
      * @return void
      */
     public function up(){
-        Schema::create('afirmacion', function (Blueprint $table) {
-            $table->Increments('id');
+        Schema::create('afirmacion', function(Blueprint $table){
+            $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('modulo_id')->unsigned();
-            $table->foreign('modulo_id')->references('id')->on('modulo_icfes');
+            $table->bigInteger('modulo_id')->unsigned();
+            //$table->foreign('modulo_id')->references('id')->on('modulo_icfes');
             $table->timestamps();
             $table->softDeletes();
         });

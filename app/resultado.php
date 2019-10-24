@@ -3,23 +3,20 @@
 namespace ProyectIcfes;
 
 use Illuminate\Database\Eloquent\Model;
+use ProyectIcfes\asignatura;
+use ProyectIcfes\criterio;
 
-class resultado extends Model
-{
-    //
-    protected $table ="resultado_aprendizaje";
+class resultado extends Model{
+
+    protected $table = "resultado_aprendizaje";
 
     protected $fillable = ['name', 'asignatura_id'];
 
-    public function asignaturas()
-    {
-        return $this->belongsTo('ProyectIcfes\asignatura', 'asignatura_id');
+    public function asignatura(){
+        return $this->belongsTo(asignatura::class);
     }
 
-    public function criterios()
-     {
-         return $this->hasMany('ProyectIcfes\criterio');
-     }
-
-
+    public function criterios(){
+        return $this->hasMany(criterio::class);
+    }
 }

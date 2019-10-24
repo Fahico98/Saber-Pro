@@ -12,11 +12,11 @@ class CreateProgramaTable extends Migration{
      * @return void
      */
     public function up(){
-        Schema::create('programa', function (Blueprint $table) {
-            $table->Increments('id');
+        Schema::create('programa', function(Blueprint $table){
+            $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('facultad_id')->unsigned();
-            $table->foreign('facultad_id')->references('id')->on('facultad');
+            $table->bigInteger('facultad_id')->unsigned();
+            //$table->foreign('facultad_id')->references('id')->on('facultad');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,7 +28,7 @@ class CreateProgramaTable extends Migration{
      * @return void
      */
     public function down(){
-        Schema::table('programa', function (Blueprint $table){
+        Schema::table('programa', function(Blueprint $table){
             $table->dropForeign(['facultad_id']);
         });
         Schema::dropIfExists('programa');

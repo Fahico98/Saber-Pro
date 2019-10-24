@@ -12,11 +12,11 @@ class CreateCriterioEvaluacionTable extends Migration{
      * @return void
      */
     public function up(){
-        Schema::create('criterio_evaluacion', function (Blueprint $table) {
-            $table->Increments('id');
+        Schema::create('criterio_evaluacion', function(Blueprint $table){
+            $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('result_id')->unsigned();
-            $table->foreign('result_id')->references('id')->on('resultado_aprendizaje');
+            $table->bigInteger('resultado_aprendizaje_id')->unsigned();
+            //$table->foreign('resultado_aprendizaje_id')->references('id')->on('resultado_aprendizaje');
             $table->timestamps();
             $table->softDeletes();
         });

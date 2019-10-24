@@ -49,7 +49,7 @@
                                 <tr>
                                     <td>{{ $resultado->id }}</td>
                                     <td>{{ $resultado->name }}</td>
-                                    <td>{{ $resultado->asignaturas->name}}</td>
+                                    <td>{{ $resultado->asignatura->name}}</td>
                                     <td>
                                         <a href="#" class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
                                         <a href="{{asset('/unipana/resultado/'.$resultado->id.'/editar')}}"

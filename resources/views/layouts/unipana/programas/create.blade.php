@@ -1,3 +1,4 @@
+
 @extends('template.template')
 
 @section('contenido')
@@ -26,4 +27,5 @@
       </div>
   </div>
 </div>
+
 @endsection

@@ -51,7 +51,7 @@
                                 <tr>
                                     <td>{{ $programa->id }}</td>
                                     <td>{{ $programa->name }}</td>
-                                    <td>{{ $programa->facultades->name}}</td>
+                                    <td>{{ $programa->facultad->name}}</td>
                                     <td>
                                         <a href="#" class="btn btn-primary btn-lg mb-1"> <i class="fas fa-list-alt"></i> </a>
                                         <a href="{{asset('/unipana/programa/'.$programa->id.'/editar')}}"

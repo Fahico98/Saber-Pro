@@ -11,10 +11,9 @@ class CreateModuloIcfesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('modulo_icfes', function (Blueprint $table) {
-            $table->Increments('id');
+    public function up(){
+        Schema::create('modulo_icfes', function(Blueprint $table){
+            $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
             $table->softDeletes();

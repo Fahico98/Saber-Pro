@@ -3,25 +3,20 @@
 namespace ProyectIcfes;
 
 use Illuminate\Database\Eloquent\Model;
+use ProyectIcfes\afirmacion;
+use ProyectIcfes\criterio;
 
-class evidencia extends Model
-{
-    //
-    protected $table ="evidencia";
-   protected $fillable = ['name', 'afirmacion_id'];
+class evidencia extends Model{
 
+    protected $table = "evidencia";
 
-   public function afirmaciones()
-   {
-       return $this->belongsTo('ProyectIcfes\afirmacion','afirmacion_id');
-   }
+    protected $fillable = ['name', 'afirmacion_id'];
 
-   public function relaciones()
-   {
-        return $this->belongsTo('ProyectIcfes\relacion');
+    public function afirmacion(){
+        return $this->belongsTo(afirmacion::class);
     }
 
-
-
-
+    public function criterios(){
+        return $this->belongsToMany(criterio::class);
+    }
 }

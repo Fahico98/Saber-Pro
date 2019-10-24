@@ -10,7 +10,7 @@
   </ol>
 </nav>
 
-<div class="card-body ">
+<div class="card-body">
   <div class="card spur-card">
       <div class="card-header">
           <div class="spur-card-icon">

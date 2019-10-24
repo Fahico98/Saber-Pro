@@ -12,11 +12,11 @@ class CreateEvidenciaTable extends Migration{
      * @return void
      */
     public function up(){
-        Schema::create('evidencia', function (Blueprint $table){
-            $table->Increments('id');
+        Schema::create('evidencia', function(Blueprint $table){
+            $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('afirmacion_id')->unsigned();
-            $table->foreign('afirmacion_id')->references('id')->on('afirmacion');
+            $table->bigInteger('afirmacion_id')->unsigned();
+            //$table->foreign('afirmacion_id')->references('id')->on('afirmacion');
             $table->timestamps();
             $table->softDeletes();
         });

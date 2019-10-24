@@ -5,7 +5,6 @@ namespace ProyectIcfes;
 use ProyectIcfes\User;
 use Illuminate\Database\Eloquent\Model;
 
-
 class Role extends Model{
 
     //protected $table ="roles";

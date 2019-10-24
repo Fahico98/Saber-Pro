@@ -55,7 +55,7 @@
                             <tr>
                                 <td>{{ $criterio->id }}</td>
                                 <td>{{ $criterio->name }}</td>
-                                <td>{{ $criterio->resultados->name}}</td>
+                                <td>{{ $criterio->resultado_aprendizaje->name }}</td>
                                 <td>
                                     <a href="#!" class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
                                     <a href="{{asset('/unipana/criterio/'.$criterio->id.'/editar')}}"

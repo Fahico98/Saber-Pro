@@ -8,7 +8,7 @@ use ProyectIcfes\modulo;
 
 class afirmacion extends Model{
 
-    protected $table ="afirmacion";
+    protected $table = "afirmacion";
 
     protected $fillable = ['name', 'modulo_id'];
 

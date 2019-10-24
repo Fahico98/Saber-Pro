@@ -4,20 +4,19 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompetenciaTable extends Migration
-{
+class CreateCompetenciaTable extends Migration{
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('competencia', function (Blueprint $table) {
-            $table->Increments('id');
+    public function up(){
+        Schema::create('competencia', function(Blueprint $table){
+            $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('asignatura_id')->unsigned();
-            $table->foreign('asignatura_id')->references('id')->on('asignatura');
+            $table->bigInteger('asignatura_id')->unsigned();
+            //$table->foreign('asignatura_id')->references('id')->on('asignatura');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,8 +27,7 @@ class CreateCompetenciaTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down(){
         Schema::dropIfExists('competencia');
     }
 }

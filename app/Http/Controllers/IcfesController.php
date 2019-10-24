@@ -49,12 +49,12 @@ class IcfesController extends Controller{
     }
 
     public function index_afirmacion(){
-        $afirmaciones = Afirmacion::with('modulos')->get();
+        $afirmaciones = Afirmacion::with('modulo')->get();
         return view('layouts.icfes.afirmaciones.index', compact('afirmaciones'));
     }
 
     public function index_evidencia(){
-        $evidencias = Evidencia::with('afirmaciones')->get();
+        $evidencias = Evidencia::with('afirmacion')->get();
         return view('layouts.icfes.evidencias.index', compact('evidencias'));
     }
 

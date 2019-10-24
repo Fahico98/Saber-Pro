@@ -59,7 +59,7 @@
 
                                                 <td>{{ $evidencia->id }}</td>
                                                 <td>{{ $evidencia->name }}</td>
-                                                <td>{{ $evidencia->afirmaciones->name}}</td>
+                                                <td>{{ $evidencia->afirmacion->name}}</td>
                                                 <td>
                                                 <a href="#!" class="btn btn-primary btn-lg mb-1"> <i class="fas fa-list-alt"></i> </a>
                                                 <a href="{{asset('/icfes/evidencia/'.$evidencia->id.'/editar')}}" class="btn btn-secondary btn-lg mb-1"> <i class="fas fa-edit"></i> </a>

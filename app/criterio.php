@@ -3,6 +3,8 @@
 namespace ProyectIcfes;
 
 use Illuminate\Database\Eloquent\Model;
+use ProyectIcfes\resultado;
+use ProyectIcfes\evidencia;
 
 class criterio extends Model{
 
@@ -10,11 +12,11 @@ class criterio extends Model{
 
     protected $fillable = ['name', 'result_id'];
 
-    public function resultados(){
-        return $this->belongsTo('ProyectIcfes\resultado', 'result_id');
+    public function resultado_aprendizaje(){
+        return $this->belongsTo(resultado::class);
     }
 
-    public function relaciones(){
-        return $this->belongsTo('ProyectIcfes\relacion');
+    public function evidencias(){
+        return $this->belongsToMany(evidencia::class);
     }
 }
