@@ -56,12 +56,12 @@
                                     <td>{{ $asignatura->docente_encargado }}</td>
                                     <td>{{ $asignatura->programa->name }}</td>
                                     <td>
-                                        <a href="{{asset('/relacion/'.$asignatura->id.'/editar')}}"
+                                        <a href="{{asset('/relacion/' . $asignatura->id . '/editar')}}"
                                             class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
                                         <a href="{{asset('/unipana/asignatura/'.$asignatura->id.'/editar')}}"
                                             class="btn btn-secondary btn-lg mb-1"><i class="fas fa-edit"></i></a>
                                         @isadmin
-                                            <a href="{{asset('/unipana/asignatura/'.$asignatura->id.'/destroy')}}"
+                                            <a href="{{asset('/unipana/asignatura/' . $asignatura->id . '/destroy')}}"
                                                 onclick="return confirm('Seguro que desea eliminar el registro?')"
                                                 class="btn btn-danger btn-lg mb-1"><i class="fas fa-times-circle"></i></a>
                                         @endisadmin

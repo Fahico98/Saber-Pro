@@ -38,18 +38,33 @@ class RelacionController extends Controller{
      */
     public function edit_asignatura($id){
 
+        /*
         $asignaturas =
             DB::table('asignatura')
-                ->where('asignatura.id',$id)
+                ->where('asignatura.id', $id)
                 ->join('resultado_aprendizaje', 'asignatura.id', '=', 'resultado_aprendizaje.asignatura_id')
-                ->join('criterio_evaluacion', 'resultado_aprendizaje.id', '=', 'criterio_evaluacion.result_id')
+                ->join('criterio_evaluacion', 'resultado_aprendizaje.id', '=', 'criterio_evaluacion.resultado_aprendizaje_id')
                 ->select(
                     'asignatura.id',
                     'asignatura.name as nombre_asignatura',
                     'resultado_aprendizaje.name as resultado',
                     'criterio_evaluacion.name as criterio'
                 )->get();
+        */
 
-        return view('layouts.relacion.create', compact('asignaturas'));
+        $asignaturas =
+            DB::table('asignatura')
+                ->where('asignatura.id', $id)
+                ->join('resultado_aprendizaje', 'asignatura.id', '=', 'resultado_aprendizaje.asignatura_id')
+                ->join('criterio_evaluacion', 'resultado_aprendizaje.id', '=', 'criterio_evaluacion.resultado_aprendizaje_id')
+                ->select(
+                    'asignatura.id',
+                    'asignatura.name as nombre_asignatura',
+                    'resultado_aprendizaje.name as resultado',
+                    'criterio_evaluacion.name as criterio'
+                )->get()->toArray();
+
+                echo "<pre>";
+        /*return*/print_r($asignaturas); /*view('layouts.relacion.create', compact('asignaturas'));*/
     }
 }
