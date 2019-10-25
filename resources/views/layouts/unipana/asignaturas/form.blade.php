@@ -8,20 +8,16 @@
     <div>
         <input class="form-control" value="{{ $asignatura->semestre}}" required="required" name="semestre" type="text">
     </div>
-
     <label for="" class="negrita">No Creditos</label>
     <div>
         <input class="form-control" value="{{ $asignatura->no_creditos}}" required="required" name="no_creditos" type="text">
     </div>
-
     <label for="" class="negrita">Docente encargado</label>
     <div>
         <input class="form-control" value="{{ $asignatura->docente_encargado}}" required="required"
             name="docente_encargado" type="text">
     </div>
-
 	<div class="form-group">
-
     <label for="" class="control-label">Programa</label>
     <select class="form-control"  name="programa_id">
         @foreach($programas as $programa){}

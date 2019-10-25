@@ -74,17 +74,37 @@ class RelacionController extends Controller{
     }
 
     public function create(Request $request){
-        /*
-        $relacion = new relacion;
-        $relacion->criterio_evaluacion_id = $request->criterio;
-        $request->evidencia_id = $request->evidencia;
-        $request->save();
-        */
         $criterio_id = $request->criterio;
         $evidencia_id = $request->evidencia;
         $criterio = Criterio::where("id", "=", $criterio_id)->get()->first();
         $evidencia = Evidencia::where("id", "=", $evidencia_id)->get()->first();
         $criterio->evidencias()->sync($evidencia);
-        //return redirect('/unipana/asignatura');
+    }
+
+    public function show_list($id){
+        $relacionData = array();
+        $resultados = Resultado::where("asignatura_id", "=", $id)->get();
+        if($resultados->count() !== 0){
+            foreach($resultados as $resultado){
+                $criterios = Criterio::where("resultado_id", "=", $resultado->id)->get();
+                if($criterios->count() !== 0){
+                    foreach($criterios as $criterio){
+                        $relaciones = Relacion::where("criterio_id", "=", $criterio->id)->get();
+                        if($relaciones->count() !== 0){
+                            foreach($relaciones as $relacion){
+                                $evidencia_id = $relacion->evidencia_id;
+                                $buffer = Evidencia::where("id", "=", $evidencia_id)->select("name")->get();
+                                array_push($relacionData, array(
+                                    "resultado" => $resultado->name,
+                                    "criterio" => $criterio->name,
+                                    "evidencia" => $buffer[0]->name
+                                ));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return view("layouts.relacion.list", compact("id"), compact("relacionData"));
     }
 }

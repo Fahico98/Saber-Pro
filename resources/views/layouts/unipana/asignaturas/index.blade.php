@@ -56,7 +56,7 @@
                                     <td>{{ $asignatura->docente_encargado }}</td>
                                     <td>{{ $asignatura->programa->name }}</td>
                                     <td>
-                                        <a href="{{asset('/relacion/' . $asignatura->id . '/editar')}}"
+                                        <a href="{{asset('/relacion/' . $asignatura->id . '/crear')}}"
                                             class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
                                         <a href="{{asset('/unipana/asignatura/'.$asignatura->id.'/editar')}}"
                                             class="btn btn-secondary btn-lg mb-1"><i class="fas fa-edit"></i></a>
