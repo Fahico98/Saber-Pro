@@ -38,15 +38,15 @@ class RelacionController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function edit_asignatura($id){
-        $modulos = DB::table('modulo_icfes')->get();
+        $modulos = DB::table('modulo')->get();
         $asignaturas = DB::table('asignatura')
             ->where('asignatura.id', $id)
-            ->join('resultado_aprendizaje', 'asignatura.id', '=', 'resultado_aprendizaje.asignatura_id')
+            ->join('resultado', 'asignatura.id', '=', 'resultado.asignatura_id')
             ->select(
                 'asignatura.id',
                 'asignatura.name as nombre_asignatura',
-                'resultado_aprendizaje.name as resultado',
-                'resultado_aprendizaje.id as resultado_id'
+                'resultado.name as resultado',
+                'resultado.id as resultado_id'
             )->get();
         if($asignaturas->count() !== 0){
             return view('layouts.relacion.create', compact('asignaturas'), compact("modulos"));
@@ -56,8 +56,8 @@ class RelacionController extends Controller{
     }
 
     public function get_criterios(){
-        $resultado_aprendizaje_id = Input::get("resultado_id");
-        $criterios = criterio::where("resultado_aprendizaje_id", "=", $resultado_aprendizaje_id)->get();
+        $resultado_id = Input::get("resultado_id");
+        $criterios = criterio::where("resultado_id", "=", $resultado_id)->get();
         return response()->json($criterios);
     }
 
@@ -73,7 +73,18 @@ class RelacionController extends Controller{
         return response()->json($evidencias);
     }
 
-    public function create_relacion(){
-
+    public function create(Request $request){
+        /*
+        $relacion = new relacion;
+        $relacion->criterio_evaluacion_id = $request->criterio;
+        $request->evidencia_id = $request->evidencia;
+        $request->save();
+        */
+        $criterio_id = $request->criterio;
+        $evidencia_id = $request->evidencia;
+        $criterio = Criterio::where("id", "=", $criterio_id)->get()->first();
+        $evidencia = Evidencia::where("id", "=", $evidencia_id)->get()->first();
+        $criterio->evidencias()->sync($evidencia);
+        //return redirect('/unipana/asignatura');
     }
 }

@@ -68,7 +68,7 @@ class unipanaController extends Controller{
     }
 
     public function index_criterio(){
-        $criterios = Criterio::with('resultado_aprendizaje')->get();
+        $criterios = Criterio::with('resultado')->get();
         return view('layouts.unipana.criterios.index', compact('criterios'));
     }
 
@@ -149,7 +149,7 @@ class unipanaController extends Controller{
     public function store_criterio(Request $request){
         $criterio = new Criterio;
         $criterio->name = $request->name;
-        $criterio->resultado_aprendizaje_id = $request->result_id;
+        $criterio->resultado_id = $request->result_id;
         $criterio->save();
         return Redirect('/unipana/criterio')->with('message','Guardado Satisfactoriamente !');
     }

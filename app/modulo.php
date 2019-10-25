@@ -7,7 +7,7 @@ use ProyectIcfes\afirmacion;
 
 class modulo extends Model{
 
-    protected $table = "modulo_icfes";
+    protected $table = "modulo";
 
     protected $fillable = ['name'];
 

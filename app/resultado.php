@@ -8,7 +8,7 @@ use ProyectIcfes\criterio;
 
 class resultado extends Model{
 
-    protected $table = "resultado_aprendizaje";
+    protected $table = "resultado";
 
     protected $fillable = ['name', 'asignatura_id'];
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class relacion extends Model{
 
-    protected $table ="cirterio_evidencia";
+    protected $table ="criterio_evidencia";
 
     protected $fillable = ['criterio_id', 'evidencia_id'];
 

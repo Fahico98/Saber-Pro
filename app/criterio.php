@@ -8,11 +8,11 @@ use ProyectIcfes\evidencia;
 
 class criterio extends Model{
 
-    protected $table ="criterio_evaluacion";
+    protected $table ="criterio";
 
     protected $fillable = ['name', 'result_id'];
 
-    public function resultado_aprendizaje(){
+    public function resultado(){
         return $this->belongsTo(resultado::class);
     }
 

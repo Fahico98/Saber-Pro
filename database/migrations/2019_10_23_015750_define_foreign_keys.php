@@ -29,16 +29,16 @@ class DefineForeignKeys extends Migration{
             $table->foreign('programa_id')->references('id')->on('programa');
         });
 
-        Schema::table('resultado_aprendizaje', function(Blueprint $table){
+        Schema::table('resultado', function(Blueprint $table){
             $table->foreign('asignatura_id')->references('id')->on('asignatura');
         });
 
-        Schema::table('criterio_evaluacion', function(Blueprint $table){
-            $table->foreign('resultado_aprendizaje_id')->references('id')->on('resultado_aprendizaje');
+        Schema::table('criterio', function(Blueprint $table){
+            $table->foreign('resultado_id')->references('id')->on('resultado');
         });
 
         Schema::table('afirmacion', function(Blueprint $table){
-            $table->foreign('modulo_id')->references('id')->on('modulo_icfes');
+            $table->foreign('modulo_id')->references('id')->on('modulo');
         });
 
         Schema::table('evidencia', function(Blueprint $table){
