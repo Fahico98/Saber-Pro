@@ -1,3 +1,4 @@
+
 @extends('template.template')
 
 @section('contenido')
@@ -22,6 +23,7 @@
             <form action="{{asset('/relacion')}}" class="form" method="POST">
                 {{ csrf_field() }}
                 @include('layouts.relacion.form')
+                <script src="{{ asset('js/getCriterios.js') }}" defer></script>
             </form>
         </div>
     </div>

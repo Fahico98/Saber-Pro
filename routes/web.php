@@ -98,10 +98,13 @@ Route::get('/unipana/criterio/{id}/destroy','unipanaController@destroy_criterio'
 Route::resource('Unipana', 'unipanaController');
 
 Route::get('/relacion/{id}/editar','RelacionController@edit_asignatura');
+Route::get('/relacion/get_criterios', 'RelacionController@get_criterios');
+Route::get('/relacion/get_afirmaciones', 'RelacionController@get_afirmaciones');
+Route::get('/relacion/get_evidencias', 'RelacionController@get_evidencias');
 //Route::post('/unipana/criterio/{id}','unipanaController@update_criterio');
 //Route::get('/unipana/criterio/{id}/destroy','unipanaController@destroy_criterio');
 
-Route::resource('relacion', 'RelacionController');
+//Route::resource('relacion', 'RelacionController');
 
 //Route::group(['middleware' => 'EsAdmin'], function () {
 
