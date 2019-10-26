@@ -133,4 +133,6 @@ Route::get('/icfes/evidencia/{id}/destroy','IcfesController@destroy_evidencia');
 
 Route::resource('icfes', 'IcfesController');
 
+Route::get("/informe_pdf/{id}", "PDFGeneratorController@generate_report");
+
 //});

@@ -175,8 +175,11 @@ return [
         ProyectIcfes\Providers\EventServiceProvider::class,
         ProyectIcfes\Providers\RouteServiceProvider::class,
 
-        // Own...
-        ProyectIcfes\Providers\BladeCustomDirectivesServiceProvider::class
+        // Fahico...
+        ProyectIcfes\Providers\BladeCustomDirectivesServiceProvider::class,
+
+        // DOMPDF Wrapper for Laravel 5.
+        Barryvdh\DomPDF\ServiceProvider::class
 
     ],
 
@@ -228,7 +231,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'PDF' => Barryvdh\DomPDF\Facade::class
     ],
 
 ];

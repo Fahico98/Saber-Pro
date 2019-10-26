@@ -16,7 +16,7 @@
             <div class="spur-card-icon">
                 <i class="fas fa-chart-bar"></i>
             </div>
-            <div class="spur-card-title">Relaciones</div>
+            <div class="spur-card-title">{{ $relacionData[0]["asignatura"] }}</div>
         </div>
         <div class="card-body">
             @foreach($relacionData as $data)
@@ -25,10 +25,12 @@
                         <p class="m-0"><label class="text-primary">Resultado de aprendizaje:</label> {{ $data["resultado"] }}</p>
                         <p class="m-0"><label class="text-primary">Criterio de evaluación:</label> {{ $data["criterio"] }}</p>
                         <p class="m-0"><label class="text-primary">Evidencia:</label> {{ $data["evidencia"] }}</p>
+                        <p class="m-0"><label class="text-primary">Afirmación:</label> {{ $data["afirmacion"] }}</p>
+                        <p class="m-0"><label class="text-primary">Modulo ICFES:</label> {{ $data["modulo"] }}</p>
                     </div>
                 </div>
             @endforeach
-            <a href="#" class="btn btn-primary mt-4">Generar informe (PDF)</a>
+            <a href={{ asset("/informe_pdf/" . $id[0]) }} class="btn btn-primary mt-4">Generar informe (PDF)</a>
         </div>
     </div>
 </div>

@@ -16,6 +16,7 @@ use ProyectIcfes\criterio;
 use ProyectIcfes\relacion;
 use ProyectIcfes\evidencia;
 use ProyectIcfes\afirmacion;
+use ProyectIcfes\Modulo;
 use Session;
 use Redirect;
 use Storage;
@@ -83,6 +84,7 @@ class RelacionController extends Controller{
 
     public function show_list($id){
         $relacionData = array();
+        $asignatura = Asignatura::where("id", "=", $id)->select("name")->get()->first();
         $resultados = Resultado::where("asignatura_id", "=", $id)->get();
         if($resultados->count() !== 0){
             foreach($resultados as $resultado){
@@ -92,12 +94,16 @@ class RelacionController extends Controller{
                         $relaciones = Relacion::where("criterio_id", "=", $criterio->id)->get();
                         if($relaciones->count() !== 0){
                             foreach($relaciones as $relacion){
-                                $evidencia_id = $relacion->evidencia_id;
-                                $buffer = Evidencia::where("id", "=", $evidencia_id)->select("name")->get();
+                                $evidencia = Evidencia::where("id", "=", $relacion->evidencia_id)->get()->first();
+                                $afirmacion = Afirmacion::where("id", "=", $evidencia->afirmacion_id)->get()->first();
+                                $modulo = Modulo::where("id", "=", $afirmacion->modulo_id)->get()->first();
                                 array_push($relacionData, array(
-                                    "resultado" => $resultado->name,
-                                    "criterio" => $criterio->name,
-                                    "evidencia" => $buffer[0]->name
+                                    "asignatura"    => $asignatura->name,
+                                    "resultado"     => $resultado->name,
+                                    "criterio"      => $criterio->name,
+                                    "evidencia"     => $evidencia->name,
+                                    "afirmacion"    => $afirmacion->name,
+                                    "modulo"        => $modulo->name
                                 ));
                             }
                         }
