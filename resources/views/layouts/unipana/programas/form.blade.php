@@ -4,7 +4,6 @@
     <div>
         <input class="form-control" value="{{ $programa->name}}" required="required" name="name" type="text">
     </div>
-
     <div class="form-group">
         <label for="" class="control-label">Facultad</label>
         <select class="form-control"  name="facultad_id">

@@ -52,7 +52,8 @@ class RelacionController extends Controller{
         if($asignaturas->count() !== 0){
             return view('layouts.relacion.create', compact('asignaturas'), compact("modulos"));
         }else{
-
+            $asignaturas = Asignatura::with('programa')->get();
+            return view('layouts.unipana.asignaturas.index', compact('asignaturas'));
         }
     }
 
@@ -80,6 +81,7 @@ class RelacionController extends Controller{
         $criterio = Criterio::where("id", "=", $criterio_id)->get()->first();
         $evidencia = Evidencia::where("id", "=", $evidencia_id)->get()->first();
         $criterio->evidencias()->sync($evidencia);
+        return redirect()->route("asignatura_index");
     }
 
     public function show_list($id){

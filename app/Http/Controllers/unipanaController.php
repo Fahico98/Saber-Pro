@@ -191,7 +191,7 @@ class unipanaController extends Controller{
         return view('layouts.unipana.facultades.edit',compact('facultad'));
     }
 
-    public function edit_Programa($id){
+    public function edit_programa($id){
         $programa = Programa::find($id);
         $facultades = Facultad::all();
         return view('layouts.unipana.programas.edit',compact('programa','facultades'));

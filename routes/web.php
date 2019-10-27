@@ -74,7 +74,7 @@ Route::get('/unipana/programa/{id}/editar','unipanaController@edit_programa');
 Route::post('/unipana/programa/{id}','unipanaController@update_programa');
 Route::get('/unipana/programa/{id}/destroy','unipanaController@destroy_programa');
 
-Route::get('/unipana/asignatura', 'unipanaController@index_asignatura');
+Route::get('/unipana/asignatura', 'unipanaController@index_asignatura')->name("asignatura_index");
 Route::post('/unipana/asignatura', 'unipanaController@store_asignatura');
 Route::get('/unipana/asignatura/create', 'unipanaController@create_asignatura');
 Route::get('/unipana/asignatura/{id}/editar','unipanaController@edit_asignatura');

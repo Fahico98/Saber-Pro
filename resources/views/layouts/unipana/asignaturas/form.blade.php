@@ -21,7 +21,7 @@
     <label for="" class="control-label">Programa</label>
     <select class="form-control"  name="programa_id">
         @foreach($programas as $programa){}
-            <option value="{{$programa->id}}" "{{($asignatura->programa_id==$programa->id)?"selected":""}}">
+            <option value="{{$programa->id}}" {{ ($asignatura->programa_id == $programa->id) ? "selected" : "" }}>
                 {{ $programa->name }}
             </option>
         @endforeach;

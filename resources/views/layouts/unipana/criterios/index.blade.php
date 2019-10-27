@@ -47,6 +47,7 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Resultado de aprendizaje</th>
+                                <th scope="col">Asignatura</th>
                                 <th scope="col"> </th>
                             </tr>
                         </thead>
@@ -56,6 +57,7 @@
                                 <td>{{ $criterio->id }}</td>
                                 <td>{{ $criterio->name }}</td>
                                 <td>{{ $criterio->resultado->name }}</td>
+                                <td>{{ $criterio->resultado->asignatura->name }}</td>
                                 <td>
                                     <a href="#!" class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
                                     <a href="{{asset('/unipana/criterio/'.$criterio->id.'/editar')}}"
