@@ -2,22 +2,22 @@
 
 @section('contenido')
 
-
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{asset('/')}}">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Afirmaciones</li>
-  </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{asset('/')}}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Afirmaciones</li>
+    </ol>
 </nav>
-
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xl-4">
-            <a type="button" href="{{asset('/icfes/afirmacion/create')}}" class="btn btn-primary">
-                Agregar Nuevo
-            </a>
-        </div>
+        @isAdminOrDIE
+            <div class="col-xl-4">
+                <a type="button" href="{{asset('/icfes/afirmacion/create')}}" class="btn btn-primary">
+                    Agregar Nuevo
+                </a>
+            </div>
+        @endisAdminOrDIE
         <div class="col-xl-8">
             <form class="searchbox" action="#!">
                 <a href="#!" class="searchbox-toggle"><i class="fas fa-arrow-left"></i></a>
@@ -55,15 +55,23 @@
                                     <td>{{ $afirmacion->id }}</td>
                                     <td>{{ $afirmacion->name }}</td>
                                     <td>{{ $afirmacion->modulo->name }}</td>
-                                    <td>
-                                    <a href="#!" class="btn btn-primary btn-lg mb-1"> <i class="fas fa-list-alt"></i> </a>
-                                    <a href="{{asset('/icfes/afirmacion/'.$afirmacion->id.'/editar')}}" class="btn btn-secondary btn-lg mb-1"> <i class="fas fa-edit"></i> </a>
+                                    @isDIE
+                                        <td>
+                                            <a href="#!" class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
+                                            <a href="{{ asset('/icfes/afirmacion/' . $afirmacion->id . '/editar') }}"
+                                                class="btn btn-secondary btn-lg mb-1"><i class="fas fa-edit"></i></a>
+                                        </td>
+                                    @endisDIE
                                     @isadmin
-                                        <a href="{{asset('/icfes/afirmacion/'.$afirmacion->id.'/destroy')}}"
-                                            onclick="return confirm('Seguro que desea eliminar el registro?')"
-                                            class="btn btn-danger btn-lg mb-1"><i class="fas fa-times-circle"></i></a>
+                                        <td>
+                                            <a href="#!" class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
+                                            <a href="{{ asset('/icfes/afirmacion/' . $afirmacion->id . '/editar') }}"
+                                                class="btn btn-secondary btn-lg mb-1"><i class="fas fa-edit"></i></a>
+                                            <a href="{{asset('/icfes/afirmacion/' . $afirmacion->id . '/destroy')}}"
+                                                onclick="return confirm('Seguro que desea eliminar el registro?')"
+                                                class="btn btn-danger btn-lg mb-1"><i class="fas fa-times-circle"></i></a>
+                                        </td>
                                     @endisadmin
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

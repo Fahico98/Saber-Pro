@@ -5,7 +5,7 @@ namespace ProyectIcfes\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class EsAdmin{
+class EsVisitanteMiddleware{
 
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class EsAdmin{
     public function handle($request, Closure $next){
         if(Auth::check()){
             $user = Auth::user();
-            return ($user->role->name === "administrador") ? $next($request) : redirect('home');
+            return ($user->role->name === "visitante") ? $next($request) : redirect('home');
         }
         return redirect('login');
     }

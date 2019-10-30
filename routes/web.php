@@ -21,6 +21,8 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('register_visit', 'Auth\RegisterController@showVisitanteRegistrationForm')->name('registerVisitante');
+Route::post('register_visit', 'Auth\RegisterController@registerVisitante');
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -41,6 +43,7 @@ Route::get('/', function(){
     return view('layouts.home.home');
 })->middleware('auth');
 
+
 Route::get('/facultades', function () {
     return view('layouts.unipana1.facultades.create');
 });
@@ -49,7 +52,7 @@ Route::get('/programas', function () {
     return view('template.Layouts.unipana.programas.create');
 });
 
-Route::get('/modulos', function () {
+Route::get('/modulos', function(){
     return view('template.Layouts.icfes.modulos.create');
 });
 
@@ -94,6 +97,8 @@ Route::get('/unipana/criterio/create', 'unipanaController@create_criterio');
 Route::get('/unipana/criterio/{id}/editar','unipanaController@edit_criterio');
 Route::post('/unipana/criterio/{id}','unipanaController@update_criterio');
 Route::get('/unipana/criterio/{id}/destroy','unipanaController@destroy_criterio');
+
+Route::get('/unipana/getAsignaturas', 'unipanaController@getAsignaturas');
 
 Route::resource('Unipana', 'unipanaController');
 

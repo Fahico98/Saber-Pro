@@ -26,12 +26,17 @@ class unipanaController extends Controller{
      */
     public function __construct(){
 
-        $this->middleware('auth')->except([
-            "destroy_facultad",
-            "destroy_programa",
-            "destroy_asignatura",
-            "destroy_resultado",
-            "destroy_criterio"
+        $this->middleware('auth')->only([
+            "index_facultad",
+            "index_programa",
+            "index_asignatura",
+            "index_resultado",
+            "index_criterio",
+            "show",
+            "show_programa",
+            "show_asignatura",
+            "show_resultado",
+            "show_criterio"
         ]);
 
         $this->middleware("EsAdmin")->only([
@@ -40,6 +45,29 @@ class unipanaController extends Controller{
             "destroy_asignatura",
             "destroy_resultado",
             "destroy_criterio"
+        ]);
+
+        $this->middleware("EsDocEstInv")->only([
+            "create_facultad",
+            "create_programa",
+            "create_asignatura",
+            "create_resultado",
+            "create_criterio",
+            "store_facultad",
+            "store_programa",
+            "store_asignatura",
+            "store_resultado",
+            "store_criterio",
+            "edit_facultad",
+            "edit_programa",
+            "edit_asignatura",
+            "edit_resultado",
+            "edit_criterio",
+            "update_facultad",
+            "update_programa",
+            "update_asignatura",
+            "update_resultado",
+            "update_criterio"
         ]);
     }
 
@@ -320,5 +348,10 @@ class unipanaController extends Controller{
         $criterio = Criterio::find($id);
         $criterio->delete();
         return redirect('/unipana/criterio');
+    }
+
+    public function getAsignaturas(){
+        $asignaturas = Asignatura::all();
+        return response()->json($asignaturas);
     }
 }

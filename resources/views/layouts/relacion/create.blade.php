@@ -6,7 +6,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{asset('/')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{asset('/relacion/' . $asignaturas[0]->id . '/list')}}">Relacion</a></li>
+            <li class="breadcrumb-item"><a href="{{ asset('/relacion/' . $asignaturas[0]->id . '/list') }}">Relacion</a></li>
             <li class="breadcrumb-item active" aria-current="page">Crear</li>
         </ol>
     </nav>

@@ -30,7 +30,14 @@ class RelacionController extends Controller{
      * @return void
      */
     public function __construct(){
-        $this->middleware('auth');
+
+        $this->middleware('EsDocEstInv')->except([
+            "show_list"
+        ]);
+
+        $this->middleware('auth')->only([
+            "show_list"
+        ]);
     }
 
     /**
@@ -113,6 +120,10 @@ class RelacionController extends Controller{
                 }
             }
         }
-        return view("layouts.relacion.list", compact("id"), compact("relacionData"));
+        if(count($relacionData) !== 0){
+            return view("layouts.relacion.list", compact("id"), compact("relacionData"));
+        }else{
+            return redirect()->route("asignatura_index");
+        }
     }
 }

@@ -11,13 +11,17 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xl-4">
-            <a type="button" href="{{asset('/unipana/asignatura/create')}}" class="btn btn-primary">Agregar Nuevo</a>
-        </div>
+        @isAdminOrDIE
+            <div class="col-xl-4">
+                <a type="button" href="{{asset('/unipana/asignatura/create')}}" class="btn btn-primary">
+                    Agregar Nuevo
+                </a>
+            </div>
+        @endisAdminOrDIE
         <div class="col-xl-8">
             <form class="searchbox" action="#!">
                 <a href="#!" class="searchbox-toggle"><i class="fas fa-arrow-left"></i></a>
-                <input type="text" class="searchbox-input" placeholder="type to search">
+                <input type="text" class="searchbox-input" placeholder="type to search" id="searchBox" name="searchBox">
                 <button type="submit" class="searchbox-submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
@@ -55,17 +59,33 @@
                                     <td>{{ $asignatura->no_creditos }}</td>
                                     <td>{{ $asignatura->docente_encargado }}</td>
                                     <td>{{ $asignatura->programa->name }}</td>
-                                    <td>
-                                        <a href="{{asset('/relacion/' . $asignatura->id . '/crear')}}"
-                                            class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
-                                        <a href="{{asset('/unipana/asignatura/'.$asignatura->id.'/editar')}}"
-                                            class="btn btn-secondary btn-lg mb-1"><i class="fas fa-edit"></i></a>
+                                    <div id="tableContent" name="tableContent">
+                                        @isvisitante
+                                            <td>
+                                                <a href="{{ asset('/relacion/' . $asignatura->id . '/list')}}"
+                                                    class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
+                                            </td>
+                                        @endisvisitante
+                                        @isDIE
+                                            <td>
+                                                <a href="{{asset('/relacion/' . $asignatura->id . '/crear')}}"
+                                                    class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
+                                                <a href="{{asset('/unipana/asignatura/'.$asignatura->id.'/editar')}}"
+                                                    class="btn btn-secondary btn-lg mb-1"><i class="fas fa-edit"></i></a>
+                                            </td>
+                                        @endisDIE
                                         @isadmin
-                                            <a href="{{asset('/unipana/asignatura/' . $asignatura->id . '/destroy')}}"
-                                                onclick="return confirm('Seguro que desea eliminar el registro?')"
-                                                class="btn btn-danger btn-lg mb-1"><i class="fas fa-times-circle"></i></a>
+                                            <td>
+                                                <a href="{{asset('/relacion/' . $asignatura->id . '/crear')}}"
+                                                    class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
+                                                <a href="{{asset('/unipana/asignatura/'.$asignatura->id.'/editar')}}"
+                                                    class="btn btn-secondary btn-lg mb-1"><i class="fas fa-edit"></i></a>
+                                                <a href="{{asset('/unipana/asignatura/' . $asignatura->id . '/destroy')}}"
+                                                    onclick="return confirm('Seguro que desea eliminar el registro?')"
+                                                    class="btn btn-danger btn-lg mb-1"><i class="fas fa-times-circle"></i></a>
+                                            </td>
                                         @endisadmin
-                                    </td>
+                                    </div>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -75,5 +95,7 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('js/getAsignaturas.js') }}" defer></script>
 
 @endsection

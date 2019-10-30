@@ -26,15 +26,33 @@ class IcfesController extends Controller{
     public function __construct(){
 
         $this->middleware('auth')->except([
-            "destroy_modulo",
-            "destroy_afirmacion",
-            "destroy_evidencia"
+            "index_modulo",
+            "index_afirmacion",
+            "index_evidencia",
+            "show_modulo",
+            "show_afirmacion",
+            "show_evidencia"
         ]);
 
         $this->middleware('EsAdmin')->only([
             "destroy_modulo",
             "destroy_afirmacion",
             "destroy_evidencia"
+        ]);
+
+        $this->middleware("EsDocEstInv")->only([
+            "create_modulo",
+            "create_afirmacion",
+            "create_evidencia",
+            "store_modulo",
+            "store_afirmacion",
+            "store_evidencia",
+            "edit_modulo",
+            "edit_afirmacion",
+            "edit_evidencia",
+            "update_modulo",
+            "update_afirmacion",
+            "update_evidencia"
         ]);
     }
 

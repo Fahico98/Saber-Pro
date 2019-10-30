@@ -22,5 +22,10 @@ class RolesTableSeeder extends Seeder{
         DB::table("roles")->insert([
             "name" => "doc-est-inv"
         ]);
+
+        // Crea el rol "invitado" en la tabla "roles".
+        DB::table("roles")->insert([
+            "name" => "visitante"
+        ]);
     }
 }

@@ -63,6 +63,8 @@ class Kernel extends HttpKernel
 
         'role' => \ProyectIcfes\Http\Middleware\RoleMiddleware::class,
         'EsAdmin' => \ProyectIcfes\Http\Middleware\EsAdmin::class,
+        'EsDocEstInv' => \ProyectIcfes\Http\Middleware\EsDocEstInvMiddleware::class,
+        'EsVisitante' => \ProyectIcfes\Http\Middleware\EsVisitanteMiddleware::class,
     ];
 
     /**

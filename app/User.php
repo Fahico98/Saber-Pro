@@ -42,15 +42,6 @@ class User extends Authenticatable{
     ];
 
     /**
-     * Retorna "true" si el usuario es administrador y "false" en caso contrario.
-     *
-     * @return boolean
-     */
-    public function esAdmin(){
-        return ($this->role->name === 'administrador');
-    }
-
-    /**
      * Get the user that owns the role.
      */
     public function role(){

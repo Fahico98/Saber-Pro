@@ -24,8 +24,21 @@ class BladeCustomDirectivesServiceProvider extends ServiceProvider{
      * @return void
      */
     public function boot(){
+
         Blade::if("isadmin", function(){
-            return (Auth::user()) ? (Auth::user()->esAdmin()) : false;
+            return (Auth::user()) ? (Auth::user()->role->name === "administrador") : false;
+        });
+
+        Blade::if("isDIE", function(){
+            return (Auth::user()) ? (Auth::user()->role->name === "doc-inv-est") : false;
+        });
+
+        Blade::if("isAdminOrDIE", function(){
+            return (Auth::user()) ? (Auth::user()->role->name === "administrador" || Auth::user()->role->name === "doc-inv-est") : false;
+        });
+
+        Blade::if("isvisitante", function(){
+            return (Auth::user()) ? (Auth::user()->role->name === "visitante"): false;
         });
     }
 }

@@ -11,11 +11,13 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xl-4">
-            <a type="button" href="{{asset('/unipana/criterio/create')}}" class="btn btn-primary">
-                Agregar Nuevo
-            </a>
-        </div>
+        @isAdminOrDIE
+            <div class="col-xl-4">
+                <a type="button" href="{{asset('/unipana/criterio/create')}}" class="btn btn-primary">
+                    Agregar Nuevo
+                </a>
+            </div>
+        @endisAdminOrDIE
         <div class="col-xl-8">
             <form class="searchbox" action="#!">
                 <a href="#!" class="searchbox-toggle">
@@ -58,18 +60,26 @@
                                 <td>{{ $criterio->name }}</td>
                                 <td>{{ $criterio->resultado->name }}</td>
                                 <td>{{ $criterio->resultado->asignatura->name }}</td>
-                                <td>
-                                    <a href="#!" class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
-                                    <a href="{{asset('/unipana/criterio/'.$criterio->id.'/editar')}}"
-                                        class="btn btn-secondary btn-lg mb-1"><i class="fas fa-edit"></i>
-                                    </a>
-                                    @isadmin
+                                @isDIE
+                                    <td>
+                                        <a href="#!" class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
+                                        <a href="{{asset('/unipana/criterio/'.$criterio->id.'/editar')}}"
+                                            class="btn btn-secondary btn-lg mb-1"><i class="fas fa-edit"></i>
+                                        </a>
+                                    </td>
+                                @endisDIE
+                                @isadmin
+                                    <td>
+                                        <a href="#!" class="btn btn-primary btn-lg mb-1"><i class="fas fa-list-alt"></i></a>
+                                        <a href="{{asset('/unipana/criterio/'.$criterio->id.'/editar')}}"
+                                            class="btn btn-secondary btn-lg mb-1"><i class="fas fa-edit"></i>
+                                        </a>
                                         <a href="{{asset('/unipana/criterio/'.$criterio->id.'/destroy')}}"
                                             onclick="return confirm('Seguro que desea eliminar el registro?')"
                                             class="btn btn-danger btn-lg mb-1"><i class="fas fa-times-circle"></i>
                                         </a>
-                                    @endisadmin
-                                </td>
+                                    </td>
+                                @endisadmin
                             </tr>
                         @endforeach
                         </tbody>

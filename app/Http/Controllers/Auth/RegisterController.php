@@ -1,4 +1,5 @@
 <?php
+
 namespace ProyectIcfes\Http\Controllers\Auth;
 use ProyectIcfes\Rol;
 use ProyectIcfes\User;
@@ -10,8 +11,8 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 
-class RegisterController extends Controller
-{
+class RegisterController extends Controller{
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -38,10 +39,17 @@ class RegisterController extends Controller
      * @return void
      */
 
+    public function __construct(){
 
-    public function __construct()
-    {
-        $this->middleware('guest');
+        $this->middleware('guest')->except([
+            "showRegistrationForm",
+            "register"
+        ]);
+
+        $this->middleware("EsAdmin")->only([
+            "showRegistrationForm",
+            "register"
+        ]);
     }
 
     /**
@@ -50,8 +58,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data){
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -65,43 +72,52 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \ProyectIcfes\User
      */
+    public function createUser(){
+        return view('layouts.usuarios.create');
+    }
 
 
-     public function createUser()
-     {
-       return view('layouts.usuarios.create');
-     }
-
-
-    protected function create(array $data)
-    {
+    protected function create(array $data){
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role_id' => 1,
+            'role_id' => 2,
         ]);
-
         //$user->roles()->attach(2);
-
-
         return $user;
-
     }
 
+    protected function createVisitante(array $data){
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role_id' => 3
+        ]);
+        //$user->roles()->attach(2);
+        return $user;
+    }
 
-
-    protected function store(request $request)
-    {
+    protected function store(request $request){
         $user = new User();
         $user->fill($request->all());
         $user->password = bcrypt($user->password);
-        $user->roles()->attach(1);
+        $user->roles()->attach(2);
         $user->save();
-
-
         return redirect('login');
+    }
 
+    protected function storeVisitante(request $request){
+        $user = new User();
+        $user->fill($request->all());
+        $user->password = bcrypt($user->password);
+        $user->roles()->attach(3);
+        $user->save();
+        return redirect('login');
+    }
 
+    public function showVisitanteRegistrationForm(){
+        return view('auth.registerVisitante');
     }
 }
