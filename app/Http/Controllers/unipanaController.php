@@ -5,6 +5,7 @@ namespace ProyectIcfes\Http\Controllers;
 use ProyectIcfes\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use ProyectIcfes\asignatura;
 use ProyectIcfes\resultado;
@@ -14,7 +15,6 @@ use ProyectIcfes\programa;
 use Session;
 use Redirect;
 use Storage;
-use Input;
 use DB;
 
 class unipanaController extends Controller{
@@ -80,14 +80,26 @@ class unipanaController extends Controller{
 
     public function index_programa(){
         $programas = Programa::with('facultad')->get();
-        //return $programas;
         return view('layouts.unipana.programas.index', compact('programas'));
     }
 
-    public function index_asignatura(){
-        $asignaturas = Asignatura::with('programa')->get();
-        //return $asignaturas;
-        return view('layouts.unipana.asignaturas.index', compact('asignaturas'));
+    public function index_asignatura(Request $request){
+        $perPage = 5;
+        if($request->searchBox !== null){
+            $asignaturas = Asignatura::where('name', 'like', '%' . $request->searchBox . '%')
+                ->with('programa')
+                ->paginate($perPage);
+            return view('layouts.unipana.asignaturas.index', [
+                "asignaturas" => $asignaturas,
+                "searchBox" => $request->searchBox
+            ]);
+        }else{
+            $asignaturas = Asignatura::with('programa')->paginate($perPage);
+            return view('layouts.unipana.asignaturas.index', [
+                "asignaturas" => $asignaturas,
+                "searchBox" => ""
+            ]);
+        }
     }
 
     public function index_resultado(){
@@ -134,6 +146,12 @@ class unipanaController extends Controller{
         return view('layouts.unipana.criterios.create', compact('resultados','asignaturas','criterio'));
     }
 
+    public function get_resultados(){
+        $asignatura_id = Input::get("asignatura_id");
+        $resultados = Resultado::where("asignatura_id", "=", $asignatura_id)->get();
+        return response()->json($resultados);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -177,7 +195,7 @@ class unipanaController extends Controller{
     public function store_criterio(Request $request){
         $criterio = new Criterio;
         $criterio->name = $request->name;
-        $criterio->resultado_id = $request->result_id;
+        $criterio->resultado_id = $request->resultado_id;
         $criterio->save();
         return Redirect('/unipana/criterio')->with('message','Guardado Satisfactoriamente !');
     }
@@ -239,8 +257,8 @@ class unipanaController extends Controller{
 
     public function edit_criterio($id){
         $criterio = Criterio::find($id);
-        $resultados = Resultado::all();
-        return view('layouts.unipana.criterios.edit',compact('criterio','resultados'));
+        $asignaturas = Asignatura::all();
+        return view('layouts.unipana.criterios.edit',compact('criterio', 'asignaturas'));
     }
 
     /**
@@ -348,10 +366,5 @@ class unipanaController extends Controller{
         $criterio = Criterio::find($id);
         $criterio->delete();
         return redirect('/unipana/criterio');
-    }
-
-    public function getAsignaturas(){
-        $asignaturas = Asignatura::all();
-        return response()->json($asignaturas);
     }
 }

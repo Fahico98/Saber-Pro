@@ -97,8 +97,9 @@ Route::get('/unipana/criterio/create', 'unipanaController@create_criterio');
 Route::get('/unipana/criterio/{id}/editar','unipanaController@edit_criterio');
 Route::post('/unipana/criterio/{id}','unipanaController@update_criterio');
 Route::get('/unipana/criterio/{id}/destroy','unipanaController@destroy_criterio');
+Route::get('/unipana/criterio/create/get_resultados', 'unipanaController@get_resultados');
 
-Route::get('/unipana/getAsignaturas', 'unipanaController@getAsignaturas');
+//Route::get('/unipana/searchAsignatura/{input}', 'unipanaController@searchAsignatura');
 
 Route::resource('Unipana', 'unipanaController');
 
@@ -135,6 +136,7 @@ Route::get('/icfes/evidencia/create', 'IcfesController@create_evidencia');
 Route::get('/icfes/evidencia/{id}/editar','IcfesController@edit_evidencia');
 Route::post('/icfes/evidencia/{id}','IcfesController@update_evidencia');
 Route::get('/icfes/evidencia/{id}/destroy','IcfesController@destroy_evidencia');
+Route::get('/icfes/evidencia/create/get_afirmaciones', 'IcfesController@get_afirmaciones');
 
 Route::resource('icfes', 'IcfesController');
 

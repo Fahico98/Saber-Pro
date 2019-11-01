@@ -2,7 +2,8 @@
 
 namespace ProyectIcfes\Http\Controllers;
 
-use  Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use ProyectIcfes\modulo;
 use ProyectIcfes\afirmacion;
@@ -13,7 +14,6 @@ use ProyectIcfes\Http\Requests;
 use ProyectIcfes\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use DB;
-use Input;
 use Storage;
 
 class IcfesController extends Controller{
@@ -92,9 +92,15 @@ class IcfesController extends Controller{
     }
 
     public function create_evidencia(){
-        $afirmaciones = Afirmacion::all();
+        $modulos = Modulo::all();
         $evidencia = new evidencia;
-        return view('layouts.icfes.evidencias.create', compact('afirmaciones','evidencia'));
+        return view('layouts.icfes.evidencias.create', compact('modulos','evidencia'));
+    }
+
+    public function get_afirmaciones(){
+        $modulo_id = Input::get("modulo_id");
+        $afirmaciones = Afirmacion::where("modulo_id", "=", $modulo_id)->get();
+        return response()->json($afirmaciones);
     }
 
     /**
@@ -163,8 +169,8 @@ class IcfesController extends Controller{
 
     public function edit_evidencia($id){
         $evidencia = Evidencia::find($id);
-        $afirmaciones = Afirmacion::all();
-        return view('layouts.icfes.evidencias.edit',compact('evidencia','afirmaciones'));
+        $modulos = Modulo::all();
+        return view('layouts.icfes.evidencias.edit',compact('evidencia', 'modulos'));
     }
 
     /**
