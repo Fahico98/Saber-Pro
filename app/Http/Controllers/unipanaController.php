@@ -67,7 +67,8 @@ class unipanaController extends Controller{
             "update_programa",
             "update_asignatura",
             "update_resultado",
-            "update_criterio"
+            "update_criterio",
+            "get_resultados"
         ]);
     }
 
@@ -258,7 +259,17 @@ class unipanaController extends Controller{
     public function edit_criterio($id){
         $criterio = Criterio::find($id);
         $asignaturas = Asignatura::all();
-        return view('layouts.unipana.criterios.edit',compact('criterio', 'asignaturas'));
+        $asignatura_selected = $criterio->resultado->asignatura;
+        $asignatura_selected_name = $asignatura_selected->name;
+        $resultados = Resultado::where("asignatura_id", "=", $asignatura_selected->id)->get();
+        $resultado_selected_name = $criterio->resultado->name;
+        return view('layouts.unipana.criterios.edit', compact(
+            'criterio',
+            'asignaturas',
+            'asignatura_selected_name',
+            'resultados',
+            'resultado_selected_name'
+        ));
     }
 
     /**
@@ -324,10 +335,10 @@ class unipanaController extends Controller{
         $criterio = Criterio::find($id);
         $this->validate(request(), [
             'name' => 'required',
-            'result_id' => 'required',
+            'resultado_id' => 'required',
         ]);
         $criterio->name = $request->name;
-        $criterio->result_id = $request->result_id;
+        $criterio->resultado_id = $request->resultado_id;
         $criterio->save();
         return Redirect('/unipana/criterio')->with('message','Guardado Satisfactoriamente !');
     }

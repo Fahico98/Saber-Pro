@@ -5,14 +5,6 @@ var modulo = $("#modulo");
 var afirmacion = $("#afirmacion");
 var evidencia = $("#evidencia");
 
-var dropDowns = [
-    resultado,
-    criterio,
-    modulo,
-    afirmacion,
-    evidencia
-]
-
 $(document).ready(function(){
     resultado.on("change", function(event){
         event.preventDefault();
@@ -63,12 +55,3 @@ $(document).ready(function(){
         }
     });
 });
-
-function validate(){
-    dropDowns.forEach((dropDown) => {
-        if(dropDown.val() === "selected"){
-            return false;
-        }
-    });
-    return true;
-}

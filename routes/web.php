@@ -43,18 +43,17 @@ Route::get('/', function(){
     return view('layouts.home.home');
 })->middleware('auth');
 
-
+/*
 Route::get('/facultades', function () {
     return view('layouts.unipana1.facultades.create');
 });
-
 Route::get('/programas', function () {
     return view('template.Layouts.unipana.programas.create');
 });
-
 Route::get('/modulos', function(){
     return view('template.Layouts.icfes.modulos.create');
 });
+*/
 
 //Route::get('/unipana', 'asignaturaController@index');
 //Route::get('/unipana/create', 'asignaturaController@create');

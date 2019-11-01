@@ -30,11 +30,11 @@ class BladeCustomDirectivesServiceProvider extends ServiceProvider{
         });
 
         Blade::if("isDIE", function(){
-            return (Auth::user()) ? (Auth::user()->role->name === "doc-inv-est") : false;
+            return (Auth::user()) ? (Auth::user()->role->name === "doc-est-inv") : false;
         });
 
         Blade::if("isAdminOrDIE", function(){
-            return (Auth::user()) ? (Auth::user()->role->name === "administrador" || Auth::user()->role->name === "doc-inv-est") : false;
+            return (Auth::user()) ? (Auth::user()->role->name === "administrador" || Auth::user()->role->name === "doc-est-inv") : false;
         });
 
         Blade::if("isvisitante", function(){

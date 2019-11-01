@@ -52,7 +52,8 @@ class IcfesController extends Controller{
             "edit_evidencia",
             "update_modulo",
             "update_afirmacion",
-            "update_evidencia"
+            "update_evidencia",
+            "get_afirmaciones"
         ]);
     }
 
@@ -170,7 +171,17 @@ class IcfesController extends Controller{
     public function edit_evidencia($id){
         $evidencia = Evidencia::find($id);
         $modulos = Modulo::all();
-        return view('layouts.icfes.evidencias.edit',compact('evidencia', 'modulos'));
+        $modulo_selected = $evidencia->afirmacion->modulo;
+        $modulo_selected_name = $modulo_selected->name;
+        $afirmaciones = Afirmacion::where("modulo_id", "=", $modulo_selected->id)->get();
+        $afirmacion_selected_name = $evidencia->afirmacion->name;
+        return view('layouts.icfes.evidencias.edit', compact(
+            'evidencia',
+            'modulos',
+            'modulo_selected_name',
+            'afirmaciones',
+            'afirmacion_selected_name'
+        ));
     }
 
     /**

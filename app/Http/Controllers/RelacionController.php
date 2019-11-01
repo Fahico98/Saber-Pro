@@ -59,8 +59,11 @@ class RelacionController extends Controller{
         if($asignaturas->count() !== 0){
             return view('layouts.relacion.create', compact('asignaturas'), compact("modulos"));
         }else{
-            $asignaturas = Asignatura::with('programa')->get();
-            return view('layouts.unipana.asignaturas.index', compact('asignaturas'));
+            $asignaturas = Asignatura::with('programa')->paginate(5);
+            return view('layouts.unipana.asignaturas.index', [
+                "asignaturas" => $asignaturas,
+                "searchBox" => ""
+            ]);
         }
     }
 

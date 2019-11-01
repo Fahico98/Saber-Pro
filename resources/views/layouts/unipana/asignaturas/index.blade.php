@@ -21,8 +21,8 @@
         <div class="col-xl-8">
             <form class="searchbox" action="{{ asset('/unipana/asignatura') }}">
                 <a href="#!" class="searchbox-toggle"><i class="fas fa-arrow-left"></i></a>
-                <input type="text" class="searchbox-input" placeholder="type to search"
-                    id="searchBox" name="searchBox" value="{{ $searchBox }}"></input>
+                <input type="text" class="searchbox-input" placeholder="type to search" id="searchBox" name="searchBox"
+                    value="{{ $searchBox }}"></input>
                 <button type="submit" class="searchbox-submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
