@@ -45,6 +45,7 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Afirmacion</th>
+                                <th scope="col">Modulo</th>
                                 <th scope="col"> </th>
                             </tr>
                         </thead>
@@ -54,6 +55,7 @@
                                     <td>{{ $evidencia->id }}</td>
                                     <td>{{ $evidencia->name }}</td>
                                     <td>{{ $evidencia->afirmacion->name}}</td>
+                                    <td>{{ $evidencia->afirmacion->modulo->name}}</td>
                                     @isDIE
                                         <td>
                                             <a href="#!" class="btn btn-primary btn-lg mb-1"> <i class="fas fa-list-alt"></i> </a>
